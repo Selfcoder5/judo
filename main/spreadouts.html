@@ -10,18 +10,85 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/ionicons@4.2.0/dist/ionicons.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt3_Ls1AcE0JJcf7_3V6Z-bzmwSx6oRjw&libraries=places"
+  type="text/javascript"></script>
   <style>
+  
    .nav-item{
   padding-left:20px;
   padding-right:20px;
 }
   .border {
     display: inline-block;
-    width: 350px;
-    height: 230px;
+    width: 1000px;
+    height: 659px;
     margin: 6px;
   }
+  .button {
+    background-color: #dc3545; 
+    border: none;
+    color: white;
+	width: 250px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	border-radius: 8px;
+	 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
   </style>
+  <script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
+<script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var map;
+      var infowindow;
+
+      function initMap() {
+        var pyrmont = {lat: -33.867, lng: 151.195};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: pyrmont,
+          zoom: 15
+        });
+
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: pyrmont,
+          radius: 500,
+          type: ['store']
+        }, callback);
+      }
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -31,7 +98,7 @@
 						  <img width="600px" height="150px" src="images/logo.png" alt="Home" />
 						</a> 
     </div>
-    
+   
   </div>
 <div class="container">
   <div class="row">                                    
@@ -57,7 +124,7 @@
 
 <br>      
 	   
-<div class="container">	   
+<div class="">	   
 	   <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
   <a class="navbar-brand" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,8 +168,92 @@
 
 <br>
 
-<h2>Organization</h2>
 
+
+<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=maharashtra&key=AIzaSyDt3_Ls1AcE0JJcf7_3V6Z-bzmwSx6oRjw" allowfullscreen></iframe>
+
+
+
+<br>
+<br>
+<div class="container">
+<div class="row">
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Ahmednagar, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Ahmednagar</button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Akola, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Akola     </button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Aravati, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Aravati</button>
+  </div>
+  
+</div>
+<br>
+<div class="row">
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Aurangabad, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Aurangabad</button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Beed, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Beed     </button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Bhandara, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Bhandara</button>
+  </div>
+  
+</div>
+<br>
+<div class="row">
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Buldhana, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Buldhana</button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Chandrapur, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Chandrapur     </button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Dhule, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Dhule</button>
+  </div>
+  
+</div>
+<br>
+<div class="row">
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Gadchiroli, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Gadchiroli</button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Gondia, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Gondia     </button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Hingoli, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Hingoli</button>
+  </div>
+  
+</div>
+<br>
+<div class="row">
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Jalgaon, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Jalgaon</button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Jalna, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Jalna     </button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Kolhapur, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Kolhapur</button>
+  </div>
+  
+</div>
+<br>
+<div class="row">
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Latur, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Latur</button>
+  </div>
+  <div class="col">
+	<button class="button" data-toggle="popover" title="Mumbai, Maharashtra" data-content="And here's some amazing content. It's very engaging. Right?">Mumbai     </button>
+  </div>
+  <div class="col">
+	
+  </div>
+  
+</div>
 
 
 
@@ -162,13 +313,15 @@
 			<i class="fab fa-facebook" style="font-size:36px"></i>
 			<i class="fab fa-instagram" style="font-size:36px"></i>
 	  <i class="fab fa-twitter-square" style="font-size:36px"></i>
+	  
+
     </div>
   </div>
   </div>
 </div>
 </div>
  <div class="row">
-	    <div class="col">
+	   <div class="col">
        <div class="footer-copyright text-center py-3"> Copyright © 2018 JUDO Association MHA. All Right Reserved
     </div></div>
     <div class="col-md-auto">
